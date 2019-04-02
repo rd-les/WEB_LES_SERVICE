@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "P_KO_TestData";
+}
+
+<h2>P_KO_TestData</h2>
+
+<script src="~/Scripts/jquery-2.2.0.min.js"></script>
+<script src="~/Scripts/default.js"></script>
+
+
+<script>
+
+    var jsonString = convertViewBagJsonData("@ViewBag.jsonData");
+    var jsonData = eval('(' + jsonString + ')');
+
+
+    jQuery(function () {
+
+        $.each(jsonData.Data, function (key, val) {
+            console.log(val);
+            var str = "<tr>";
+            str += "<td>" + val.id + "</td>";
+            str += "<td>" + val.date_time + "</td>";
+            str += "<td>" + val.data_dim + "</td>";
+            str += "</tr>";
+            $("#tbody_main").append(str);
+        });
+
+    });
+
+
+</script>
+
+<div style="text-align:center;margin-left:100px;">
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div style="width:90%;">
+        <table border="1" style="width:1200px;">
+            <thead>
+                <tr>
+                    <td style="width:10%;">id</td>
+                    <td style="width:20%;">DateTime</td>
+                    <td style="width:20%;">DIM %</td>
+                </tr>
+            </thead>
+            <tbody id="tbody_main"></tbody>
+        </table>
+    </div>
+</div>

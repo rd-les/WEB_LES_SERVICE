@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery-2.2.0.min.js"></script>
+<script src="~/Scripts/default.js"></script>
+<!DOCTYPE html>
+
+
+<script>
+
+    var jsonString = convertViewBagJsonData("@ViewBag.jsonData");
+    var jsonData = eval('(' + jsonString + ')');
+
+
+    jQuery(function () {
+
+        $.each(jsonData.Data, function (key, val) {
+            console.log(val);
+            var str = "<tr>";
+            str += "<td>" + val.id + "</td>";
+            str += "<td>" + val.date_create + "</td>";
+            str += "<td>" + val.po_no + "</td>";
+            str += "<td>" + val.code_no + "</td>";
+            str += "<td>" + val.string_data + "</td>";
+            str += "</tr>";
+            $("#tbody_main").append(str);
+        });
+
+    });
+
+</script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>V_TrackDataFT_Driver</title>
+</head>
+<body>
+    <div style="text-align:center;margin-left:100px;">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div style="width:90%;">
+            <table border="1" style="width:1200px;">
+                <thead>
+                    <tr>
+                        <td style="width:10%;">id</td>
+                        <td style="width:20%;">DateTime</td>
+                        <td style="width:20%;">PO NO</td>
+                        <td style="width:20%;">CODE NO</td>
+                        <td style="width:25%;">TEXT</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody_main"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
